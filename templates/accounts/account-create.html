@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Create your account {% endblock %}
+
+{% block page_content %}
+    <div class="min-vh-100 d-flex justify-content-center align-items-center">
+        <form action="{% url 'account_create' %}" method="post">
+            {% for field in form %}
+                <div class="pb-4">
+                    <div class="pb-2 fs-6">
+                        {{ field.label_tag }}
+                    </div>
+                    <div>
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+            {% csrf_token %}
+            <button type="submit" 
+                    class="mt-2 btn btn-dark border border-dark">
+                Create Account
+            </button>
+        </form>
+    </div>
+{% endblock %}
