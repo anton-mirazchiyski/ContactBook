@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block page_content %}
+    {% if request.user.is_authenticated %}
+        <div>{{ request.user.username }}</div>
+    {% endif %}
+{% endblock %}
