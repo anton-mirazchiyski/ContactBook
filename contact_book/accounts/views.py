@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model, authenticate, login
+from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 
@@ -25,3 +25,8 @@ class AccountLoginView(LoginView):
     template_name = 'accounts/account-login.html'
     authentication_form = AccountLoginForm
     next_page = 'all_contacts'
+
+
+def logout_account(request):
+    logout(request)
+    return redirect('login')
