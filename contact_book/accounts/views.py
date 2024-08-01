@@ -1,8 +1,8 @@
 from django.contrib.auth import get_user_model, authenticate, login
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from django.views import generic as views
 
-from contact_book.accounts.forms import AccountCreationForm
+from contact_book.accounts.forms import AccountCreationForm, AccountLoginForm
 
 UserModel = get_user_model()
 
@@ -19,3 +19,9 @@ def create_account(request):
 
     form = AccountCreationForm()
     return render(request, 'accounts/account-create.html', {'form': form})
+
+
+class AccountLoginView(LoginView):
+    template_name = 'accounts/account-login.html'
+    authentication_form = AccountLoginForm
+    next_page = 'all_contacts'

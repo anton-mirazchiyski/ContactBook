@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block page_content %}
+    <div class="min-vh-100 d-flex justify-content-center align-items-center">
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="pb-4">
+                    <div class="pb-2 fs-6">
+                        {{ field.label_tag }}
+                    </div>
+                    <div>
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit"
+                    class="mt-2 pe-4 ps-4 btn btn-dark border border-dark">
+                Login
+            </button>
+            {% if form.errors %}
+                <div class="alert alert-danger mt-4 text-wrap" style="width: 13em">
+                    {% for field, error in form.errors.items %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}
