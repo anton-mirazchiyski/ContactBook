@@ -3,7 +3,7 @@
 {% block title %} Create your account {% endblock %}
 
 {% block page_content %}
-    <div class="min-vh-100 d-flex justify-content-center align-items-center">
+    <div class="form-container d-flex justify-content-center align-items-center">
         <form action="{% url 'account_create' %}" method="post">
             {% csrf_token %}
             {% for field in form %}

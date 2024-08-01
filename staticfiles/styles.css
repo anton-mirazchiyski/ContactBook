@@ -1,0 +1,8 @@
+div.primary-container {
+    display: flex;
+    flex-direction: column;
+}
+
+div.form-container {
+    min-height: 75vh;
+}
