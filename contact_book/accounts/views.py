@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 
-from contact_book.accounts.forms import AccountCreationForm, AccountLoginForm
+from contact_book.accounts.forms import AccountCreationForm, AccountLoginForm, AccountNamesSetupForm
 
 UserModel = get_user_model()
 
@@ -30,3 +30,9 @@ class AccountLoginView(LoginView):
 def logout_account(request):
     logout(request)
     return redirect('login')
+
+
+def set_up_names(request):
+    form = AccountNamesSetupForm()
+    return render(request, 'accounts/account-names-setup.html', {'form': form})
+
