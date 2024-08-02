@@ -5,16 +5,16 @@
     {% if not request.user.is_authenticated %}
         <ul class="navbar-nav position-absolute top-0 end-0 mt-4 me-5 pt-2">
             <li class="nav-item ms-3 me-4 bg-dark border border-dark border-2 rounded">
-                <a class="nav-link text-light fs-5" href="{% url 'account_create' %}">Sign Up</a>
+                <a class="nav-link text-light fs-6" href="{% url 'account_create' %}">Sign Up</a>
             </li>
-            <li class="nav-item ms-3 border border-2 rounded">
-                <a class="nav-link text-light fs-5" href="{% url 'login' %}">Sign In</a>
+            <li class="nav-item ms-3 bg-light border border-primary border-2 rounded">
+                <a class="nav-link text-dark fs-6" href="{% url 'login' %}">Sign In</a>
             </li>
         </ul>
     {% else %}
         <ul class="navbar-nav position-absolute top-0 end-0 mt-4 me-4">
             <li class="nav-item mt-3">
-                <a class="nav-link text-light fs-5" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link text-light fs-6" href="{% url 'logout' %}">Logout</a>
             </li>
         </ul>
     {% endif %}
