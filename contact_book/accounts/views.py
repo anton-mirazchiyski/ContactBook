@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, resolve_url
 
+from contact_book import settings
 from contact_book.accounts.forms import AccountCreationForm, AccountLoginForm, AccountNamesSetupForm
 
 UserModel = get_user_model()
@@ -24,7 +26,12 @@ def create_account(request):
 class AccountLoginView(LoginView):
     template_name = 'accounts/account-login.html'
     authentication_form = AccountLoginForm
-    next_page = 'all_contacts'
+
+    def get_success_url(self):
+        if self.request.user.first_name != "":
+            return resolve_url(settings.LOGIN_REDIRECT_URL)
+
+        return resolve_url('names_setup')
 
 
 def logout_account(request):
@@ -32,7 +39,7 @@ def logout_account(request):
     return redirect('login')
 
 
+@login_required
 def set_up_names(request):
     form = AccountNamesSetupForm()
     return render(request, 'accounts/account-names-setup.html', {'form': form})
-
