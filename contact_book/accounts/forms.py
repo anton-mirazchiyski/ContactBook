@@ -20,11 +20,13 @@ class AccountNamesSetupForm(FormControlMixin, forms.Form):
     MAX_LEN_NAME = 40
     MIN_LEN_NAME = 2
 
-    first_name = forms.CharField(max_length=MAX_LEN_NAME, min_length=MIN_LEN_NAME)
-    last_name = forms.CharField(max_length=MAX_LEN_NAME, min_length=MIN_LEN_NAME)
-
-    form_fields = {'first_name': first_name, 'last_name': last_name}
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.apply_bootstrap_classes(self.form_fields)
+    first_name = forms.CharField(
+        max_length=MAX_LEN_NAME,
+        min_length=MIN_LEN_NAME,
+        widget=forms.TextInput(attrs={'class': FormControlMixin.STYLE})
+    )
+    last_name = forms.CharField(
+        max_length=MAX_LEN_NAME,
+        min_length=MIN_LEN_NAME,
+        widget=forms.TextInput(attrs={'class': FormControlMixin.STYLE})
+    )
