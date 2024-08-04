@@ -17,7 +17,7 @@ def create_account(request):
             password = request.POST['password1']
             user = UserModel.objects.create_user(username=username, email="", password=password)
             login(request, user)
-            return redirect('all_contacts')
+            return redirect('names_setup')
 
     form = AccountCreationForm()
     return render(request, 'accounts/account-create.html', {'form': form})
@@ -41,5 +41,14 @@ def logout_account(request):
 
 @login_required
 def set_up_names(request):
+    if request.method == 'POST':
+        form = AccountNamesSetupForm(request.POST)
+        if form.is_valid():
+            user = UserModel.objects.get(username=request.user.username)
+            user.first_name = request.POST['first_name']
+            user.last_name = request.POST['last_name']
+            user.save()
+            return redirect('all_contacts')
+
     form = AccountNamesSetupForm()
     return render(request, 'accounts/account-names-setup.html', {'form': form})
