@@ -8,6 +8,7 @@
     <div class="d-flex flex-column justify-content-center align-items-center">
         <form action="{% url 'names_setup' %}" method="post">
             {% csrf_token %}
+            {{ form.non_field_errors }}
             <div class="d-flex">
                 {% for field in form %}
                     <div class="d-flex flex-column">
@@ -21,8 +22,13 @@
                 {% endfor %}
             </div>
             <div class="text-center mt-5">
-                <button type="submit" class="btn btn-dark px-5 mt-3 me-3">OK</button>
+                <button type="submit" class="btn btn-dark px-5 mt-3 me-3">Continue</button>
             </div>
+            {% if form.errors %}
+                <div class="alert alert-danger mt-4 text-wrap" style="width: 16em">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
         </form>
     </div>
 {% endblock %}
