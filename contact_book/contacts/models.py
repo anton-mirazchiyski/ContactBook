@@ -8,6 +8,35 @@ from contact_book.contacts.validators import validate_contact_name
 UserModel = get_user_model()
 
 
+class Category(models.Model):
+    MAX_LENGTH_CATEGORY = 30
+
+    FAMILY = 'Family'
+    FRIENDS = 'Friends'
+    WORK = 'Work'
+    OTHER = 'Other'
+
+    CATEGORY_CHOICES = (
+        (FAMILY, FAMILY),
+        (FRIENDS, FRIENDS),
+        (WORK, WORK),
+        (OTHER, OTHER),
+    )
+
+    contact_category = models.CharField(
+        primary_key=True,
+        max_length=MAX_LENGTH_CATEGORY,
+        choices=CATEGORY_CHOICES,
+        null=False, blank=False
+    )
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.contact_category
+
+
 class Contact(models.Model):
     MAX_LENGTH_NAME = 40
     MIN_LENGTH_NAME = 2
