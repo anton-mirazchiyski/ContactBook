@@ -1,7 +1,7 @@
 from django.urls import path
 
-from contact_book.contacts.views import ShowAllContactsView
+from contact_book.contacts.views import show_all_contacts
 
 urlpatterns = [
-    path('all/', ShowAllContactsView.as_view(), name='all_contacts'),
+    path('all/', show_all_contacts, name='all_contacts'),
 ]
