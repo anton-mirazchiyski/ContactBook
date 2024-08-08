@@ -1,7 +1,45 @@
 {% extends 'base.html' %}
 
+{% block title %} Your contacts {% endblock %}
+
 {% block page_content %}
-    {% if request.user.is_authenticated %}
-        <div>{{ request.user.username }}</div>
-    {% endif %}
+
+    <div class="p-5">
+        {% if family_contacts %}
+            <h2 class="">Family</h2>
+            <div class="d-flex mb-5">
+                {% for contact in family_contacts %}
+                    {% include 'partials/contact-info.html' %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if friends_contacts %}
+            <h2 class="">Friends</h2>
+            <div class="d-flex mb-5">
+                {% for contact in friends_contacts %}
+                    {% include 'partials/contact-info.html' %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if work_contacts %}
+            <h2 class="">Work</h2>
+            <div class="d-flex mb-5">
+                {% for contact in work_contacts %}
+                    {% include 'partials/contact-info.html' %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if other_contacts %}
+            <h2 class="">Other</h2>
+            <div class="d-flex mb-5">
+                {% for contact in other_contacts %}
+                    {% include 'partials/contact-info.html' %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
 {% endblock %}
