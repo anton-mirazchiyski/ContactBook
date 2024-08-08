@@ -60,6 +60,8 @@ class Contact(models.Model):
         null=True, blank=True
     )
 
+    category = models.ForeignKey(Category, on_delete=models.RESTRICT, null=False, blank=False)
+
     account = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=False, blank=True)
 
     def __str__(self):
