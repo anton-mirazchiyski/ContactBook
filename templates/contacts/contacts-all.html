@@ -6,8 +6,8 @@
 
     <div class="p-5">
         {% if family_contacts %}
-            <h2 class="">Family</h2>
-            <div class="d-flex mb-5">
+            <h2 class="mb-4">Family</h2>
+            <div class="contacts-container d-flex mb-5">
                 {% for contact in family_contacts %}
                     {% include 'partials/contact-info.html' %}
                 {% endfor %}
@@ -15,8 +15,8 @@
         {% endif %}
 
         {% if friends_contacts %}
-            <h2 class="">Friends</h2>
-            <div class="d-flex mb-5">
+            <h2 class="mb-4">Friends</h2>
+            <div class="contacts-container d-flex mb-5">
                 {% for contact in friends_contacts %}
                     {% include 'partials/contact-info.html' %}
                 {% endfor %}
@@ -24,8 +24,8 @@
         {% endif %}
 
         {% if work_contacts %}
-            <h2 class="">Work</h2>
-            <div class="d-flex mb-5">
+            <h2 class="mb-4">Work</h2>
+            <div class="contacts-container d-flex mb-5">
                 {% for contact in work_contacts %}
                     {% include 'partials/contact-info.html' %}
                 {% endfor %}
@@ -33,8 +33,8 @@
         {% endif %}
 
         {% if other_contacts %}
-            <h2 class="">Other</h2>
-            <div class="d-flex mb-5">
+            <h2 class="mb-4">Other</h2>
+            <div class="contacts-container d-flex mb-5">
                 {% for contact in other_contacts %}
                     {% include 'partials/contact-info.html' %}
                 {% endfor %}

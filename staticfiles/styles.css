@@ -11,3 +11,9 @@ nav a.sign-up:hover {
     background-color: rgb(66, 70, 73);
     border-color: rgb(66, 70, 73);
 }
+
+div.contacts-container {
+    flex-wrap: wrap;
+    gap: 4em;
+    max-width: 80vw;
+}

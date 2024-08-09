@@ -1,7 +1,7 @@
-<div>
-    <p>{{ contact.name }}</p>
-    <p>{{ contact.phone_number }}</p>
+<ul class="list-group d-flex flex-column">
+    <li class="list-group-item">{{ contact.name }}</li>
+    <li class="list-group-item">{{ contact.phone_number }}</li>
     {% if contact.email %}
-        <p>{{ contact.email }}</p>
+        <li class="list-group-item">{{ contact.email }}</li>
     {% endif %}
-</div>
+</ul>
