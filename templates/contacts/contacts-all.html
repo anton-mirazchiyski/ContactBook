@@ -3,7 +3,15 @@
 {% block title %} Your contacts {% endblock %}
 
 {% block page_content %}
-
+    
+    <p>Show only:</p>
+    <ul>
+        <li><a href="{% url 'family_contacts' 'family' %}">Family</a></li>
+        <li><a href="{% url 'friends_contacts' 'friends' %}">Friends</a></li>
+        <li><a href="{% url 'work_contacts' 'work' %}">Work</a></li>
+        <li><a href="{% url 'other_contacts' 'other' %}">Other</a></li>
+    </ul>
+    
     <div class="p-5">
         {% if family_contacts %}
             <h2 class="mb-4">Family</h2>

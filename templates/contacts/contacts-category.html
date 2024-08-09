@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Your {{ category|lower }} contacts {% endblock %}
+
+{% block page_content %}}
+    
+    <div class="p-5">
+        {% if contacts %}
+            <h2 class="mb-4">{{ category }}</h2>
+            <div class="contacts-container d-flex mb-5">
+                {% for contact in contacts %}
+                    {% include 'partials/contact-info.html' %}
+                {% endfor %}
+            </div>
+            <h3 class="text-center">Number of {{ category|lower }} contacts: {{ number_of_contacts }}</h3>
+            
+        {% else %}
+            <h2 class="text-center mt-5">You have no contacts of that category</h2>
+        {% endif %}
+    </div>
+
+{% endblock %}
