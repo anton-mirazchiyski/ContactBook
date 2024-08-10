@@ -2,7 +2,8 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.views import generic as views
 
-from contact_book.contacts.models import Category
+from contact_book.contacts.forms import ContactCreateForm
+from contact_book.contacts.models import Category, Contact
 
 UserModel = get_user_model()
 
@@ -32,3 +33,9 @@ def show_contacts_by_category(request, category):
     }
 
     return render(request, 'contacts/contacts-category.html', context)
+
+
+class ContactCreateView(views.CreateView):
+    model = Contact
+    template_name = 'contacts/contact-create.html'
+    form_class = ContactCreateForm
