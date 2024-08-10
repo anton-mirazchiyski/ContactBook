@@ -4,22 +4,22 @@
 
 {% block page_content %}
 
-    <div class="d-flex px-5 pt-4">
-    <p class="me-4">Show only:</p>
-    <ul class="list-unstyled d-flex flex-row">
-        <li class="me-5">
-            <a class="text-decoration-none" href="{% url 'family_contacts' 'family' %}">Family</a>
-        </li>
-        <li class="me-5">
-            <a class="text-decoration-none" href="{% url 'friends_contacts' 'friends' %}">Friends</a>
-        </li>
-        <li class="me-5">
-            <a class="text-decoration-none" href="{% url 'work_contacts' 'work' %}">Work</a>
-        </li>
-        <li class="me-5">
-            <a class="text-decoration-none" href="{% url 'other_contacts' 'other' %}">Other</a>
-        </li>
-    </ul>
+    <div class="d-flex flex-wrap px-5 pt-4">
+        <p class="me-4">Show only:</p>
+        <ul class="list-unstyled d-flex flex-row">
+            <li class="me-5">
+                <a class="text-decoration-none" href="{% url 'family_contacts' 'family' %}">Family</a>
+            </li>
+            <li class="me-5">
+                <a class="text-decoration-none" href="{% url 'friends_contacts' 'friends' %}">Friends</a>
+            </li>
+            <li class="me-5">
+                <a class="text-decoration-none" href="{% url 'work_contacts' 'work' %}">Work</a>
+            </li>
+            <li class="me-5">
+                <a class="text-decoration-none" href="{% url 'other_contacts' 'other' %}">Other</a>
+            </li>
+        </ul>
     </div>
 
     <div class="p-5">

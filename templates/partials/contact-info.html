@@ -1,6 +1,8 @@
+{% load contacts_extras %}
+
 <ul class="list-group d-flex flex-column">
     <li class="list-group-item">{{ contact.name }}</li>
-    <li class="list-group-item">{{ contact.phone_number }}</li>
+    <li class="list-group-item">{{ contact.phone_number|number_spacing:4 }}</li>
     {% if contact.email %}
         <li class="list-group-item">{{ contact.email }}</li>
     {% endif %}
