@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Create contact {% endblock %}
+
+{% block page_content %}
+    <div class="form-container d-flex justify-content-center align-items-center">
+        <form action="{% url 'contact_create' %}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="my-3">
+                    <div class="pb-2">
+                        {{ field.label_tag }}
+                    </div>
+                    <div>
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="mt-3 px-4 btn btn-primary border border-dark">Create</button>
+        </form>
+    </div>
+{% endblock %}
