@@ -4,6 +4,7 @@ from django.views import generic as views
 
 from contact_book.contacts.forms import ContactCreateForm
 from contact_book.contacts.models import Category, Contact
+from contact_book.core.mixins import CategoriesCreationMixin
 
 UserModel = get_user_model()
 
@@ -35,7 +36,12 @@ def show_contacts_by_category(request, category):
     return render(request, 'contacts/contacts-category.html', context)
 
 
-class ContactCreateView(views.CreateView):
+class ContactCreateView(CategoriesCreationMixin, views.CreateView):
     model = Contact
     template_name = 'contacts/contact-create.html'
     form_class = ContactCreateForm
+    success_url = 'all_contacts'
+
+    def get(self, request, *args, **kwargs):
+        self.check_for_categories_existence()
+        return super().get(request, *args, **kwargs)
