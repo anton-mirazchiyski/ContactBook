@@ -18,12 +18,10 @@ class CategoriesCreationMixin:
         categories = self.get_categories_names()
         if len(categories) == len(Category.CATEGORY_CHOICES):
             return
+        self.create_category()
 
+    def create_category(self):
         for element in Category.CATEGORY_CHOICES:
             category_name = element[0]
-            if category_name not in categories:
-                self.create_category(category_name)
-
-    @staticmethod
-    def create_category(category_name):
-        Category.objects.create(contact_category=category_name)
+            if category_name not in self.get_categories_names():
+                Category.objects.create(contact_category=category_name)
