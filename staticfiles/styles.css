@@ -17,3 +17,7 @@ div.contacts-container {
     gap: 4em;
     max-width: 80vw;
 }
+
+div.contact-buttons {
+    min-width: 20em;
+}

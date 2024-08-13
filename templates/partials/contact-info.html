@@ -7,6 +7,6 @@
         <li class="list-group-item">{{ contact.email }}</li>
     {% endif %}
     <li class="list-group-item text-center">
-        <a href="#"><i class="bi bi-person-lines-fill"></i></a>
+        <a href="{% url 'contact_details' contact.pk %}"><i class="bi bi-person-lines-fill"></i></a>
     </li>
 </ul>

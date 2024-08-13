@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load contacts_extras %}
+
+{% block title %} Contact details {% endblock %}
+
+{% block page_content %}
+    <div class="form-container d-flex flex-column justify-content-center align-items-center">
+        <div class="fs-5 border border-dark rounded p-5 text-wrap" style="width: 20em">
+            <p>
+                <span class="pe-2"><i class="bi bi-person fs-2"></i> :</span>
+                {{ object.name }}
+            </p>
+            <p>
+                <span class="pe-2"><i class="bi bi-telephone fs-2"></i> :</span>
+                {{ object.phone_number|number_spacing:4 }}
+            </p>
+            <p>
+                <span class="pe-2"><i class="bi bi-envelope fs-2"></i> :</span>
+                {% if object.email %}
+                    {{ object.email }} 
+                {% else %}
+                    No email 
+                {% endif %}
+            </p>
+        </div>
+        <div class="contact-buttons d-flex justify-content-between mt-5 fs-5">
+            <a class="me-5 btn btn-primary px-4" href="#">Edit</a>
+            <a class="ms-5 btn btn-danger" href="#">Delete</a>
+        </div>
+    </div>
+{% endblock %}
