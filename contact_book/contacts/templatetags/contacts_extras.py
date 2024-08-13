@@ -14,6 +14,8 @@ def number_spacing(value, arg):
 
     for i in range(len(value)):
         if i == len(value) - 1:
+            new_value = new_value.rstrip()
+            new_value += value[i]
             break
         digit = value[i]
         new_value += digit
