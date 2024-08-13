@@ -19,5 +19,9 @@ div.contacts-container {
 }
 
 div.contact-buttons {
-    min-width: 20em;
+    min-width: 22em;
+}
+
+.contact-details-container {
+    min-height: 45vh
 }
