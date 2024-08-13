@@ -1,4 +1,3 @@
-from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
@@ -50,3 +49,9 @@ class ContactCreateView(CategoriesCreationMixin, views.CreateView):
     def get(self, request, *args, **kwargs):
         self.check_for_categories_existence()
         return super().get(request, *args, **kwargs)
+
+
+class ContactDetailView(views.DetailView):
+    model = Contact
+    template_name = 'contacts/contact-details.html'
+
