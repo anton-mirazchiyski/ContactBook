@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'contact_book.common',
     'contact_book.accounts',
     'contact_book.contacts',
     'phonenumber_field',
