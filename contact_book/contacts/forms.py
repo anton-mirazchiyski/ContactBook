@@ -15,5 +15,6 @@ class ContactCreateForm(FormControlMixin, forms.ModelForm):
         fields = ['name', 'phone_number', 'email', 'category']
 
         widgets = {
+            'name': forms.TextInput(attrs={'autofocus': True}),
             'category': forms.Select(attrs={'class': 'form-select border border-dark border-2'})
         }
