@@ -25,3 +25,7 @@ div.contact-buttons {
 .contact-details-container {
     min-height: 45vh
 }
+
+.image-container {
+    max-width: 55vw
+}

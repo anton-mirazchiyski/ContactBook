@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Contact Book {% endblock %}
+
+{% block page_content %}
+    {% if request.user.is_authenticated %}
+        
+        <p class="text-center fs-4 mt-5">
+            You have
+            <a class="text-decoration-none" href="{% url 'all_contacts' %}">{{ total_number_of_contacts }}</a>
+            contacts in total
+        </p>
+        <p class="text-center lh-lg fs-4 mt-4">
+            You can always add more by clicking 
+            <q class="fst-italic text-primary">Create Contact</q> 
+            on the top right navigation menu
+            <br>
+            or following this <a class="text-decoration-none" href="{% url 'contact_create' %}">link</a>
+        </p>
+    {% else %}
+        
+        <div class="image-container p-4">
+            <img src="{% static 'images/phone-image-unsplash.jpg' %}"
+                 class="img-fluid border border-dark rounded" alt="phone">
+        </div>
+    {% endif %}
+{% endblock %}
