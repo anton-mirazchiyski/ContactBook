@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit contact {% endblock %}
+
+{% block page_content %}
+    <div class="form-container d-flex justify-content-center align-items-center mt-4">
+        <form action="{% url 'contact_edit' object.pk %}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="my-3">
+                    <div class="pb-2">
+                        {{ field.label_tag }}
+                    </div>
+                    <div>
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary my-3 mb-4 px-4">Save</button>
+        </form>
+    </div>
+{% endblock %}

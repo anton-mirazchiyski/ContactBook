@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-from contact_book.contacts.forms import ContactCreateForm
+from contact_book.contacts.forms import ContactCreateForm, ContactEditForm
 from contact_book.contacts.models import Category, Contact
 from contact_book.core.accounts_utils import get_current_account
 from contact_book.core.mixins import CategoriesCreationMixin
@@ -54,4 +54,11 @@ class ContactCreateView(CategoriesCreationMixin, views.CreateView):
 class ContactDetailView(views.DetailView):
     model = Contact
     template_name = 'contacts/contact-details.html'
+
+
+class ContactUpdateView(views.UpdateView):
+    model = Contact
+    template_name = 'contacts/contact-edit.html'
+    form_class = ContactEditForm
+    success_url = reverse_lazy('all_contacts')
 
