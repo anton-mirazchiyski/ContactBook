@@ -5,15 +5,17 @@
 
 {% block page_content %}
     <div class="form-container d-flex flex-column justify-content-center align-items-center">
-        <div class="contact-details-container fs-5 rounded p-5 text-wrap" style="width: 20em">
+        <div class="contact-details-container fs-5 rounded p-5 mt-4 text-wrap" style="width: 20em">
             <p>
                 <span class="pe-2"><i class="bi bi-person fs-2"></i> :</span>
                 {{ object.name }}
             </p>
+        
             <p>
                 <span class="pe-2"><i class="bi bi-telephone fs-2"></i> :</span>
                 {{ object.phone_number|number_spacing:4 }}
             </p>
+        
             {% if object.email %}
                 <p>
                     <span class="pe-2"><i class="bi bi-envelope fs-2"></i> :</span>
@@ -21,12 +23,25 @@
                 </p>
             {% else %}
                 <p class="mt-5">
-                    <span class="ms-5"><a class="text-decoration-none" href="#">Add email</a></span>
+                    <span class="ms-5">
+                        <a class="text-decoration-none"
+                           href="{% url 'contact_additional_info' object.pk %}">Add email</a>
+                    </span>
                 </p>
             {% endif %}
-            <p class="mt-5">
-                <span class="ms-5"><a class="text-decoration-none" href="#">Add an address</a></span>
-            </p>
+        
+            {% if object.address %}
+                <p class="mt-4 lh-base">
+                    {{ object.address }}
+                </p>
+            {% else %}
+                <p class="mt-5">
+                <span class="ms-5">
+                    <a class="text-decoration-none"
+                       href="{% url 'contact_additional_info' object.pk %}">Add an address</a>
+                </span>
+                </p>
+            {% endif %}
         </div>
         <div class="contact-buttons d-flex justify-content-between mt-5 fs-5">
             <a class="me-5 btn btn-dark px-4" href="{% url 'contact_edit' object.pk %}">Edit</a>

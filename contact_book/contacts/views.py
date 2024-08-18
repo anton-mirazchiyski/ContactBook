@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-from contact_book.contacts.forms import ContactCreateForm, ContactEditForm
+from contact_book.contacts.forms import ContactCreateForm, ContactEditForm, ContactEmailAndAddressForm
 from contact_book.contacts.models import Category, Contact
 from contact_book.core.accounts_utils import get_current_account
 from contact_book.core.mixins import CategoriesCreationMixin
@@ -62,3 +62,21 @@ class ContactUpdateView(views.UpdateView):
     form_class = ContactEditForm
     success_url = reverse_lazy('all_contacts')
 
+
+def add_contact_email_or_address(request, pk):
+    current_account = get_current_account(request)
+    contact = current_account.contact_set.filter(pk=pk).get()
+
+    if request.method == 'POST':
+        form = ContactEmailAndAddressForm(request.POST, instance=contact)
+        if form.is_valid():
+            form.save()
+            return redirect('contact_details', pk)
+    form = ContactEmailAndAddressForm(instance=contact)
+
+    context = {
+        'form': form,
+        'contact': contact
+    }
+
+    return render(request, 'contacts/contact-email-and-address.html', context)

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Additional contact info {% endblock %}
+
+{% block page_content %}
+    <h1 class="text-center h2 mt-5">Additional information of contact {{ contact.name }}</h1>
+    <div class="form-container d-flex justify-content-center align-items-center">
+        <form action="{% url 'contact_additional_info' contact.pk %}" method="post">
+            {% csrf_token %}
+            <div>
+                <div class="pb-2 fs-5">
+                    {{ form.email.label_tag }}
+                </div>
+                <div>
+                    {{ form.email }}
+                </div>
+            </div>
+            <div class="mt-4">
+                <div class="pb-2 fs-5">
+                    {{ form.address.label_tag }}
+                </div>
+                <div>
+                    {{ form.address }}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-5 px-4">Save</button>
+        </form>
+    </div>
+{% endblock %}

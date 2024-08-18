@@ -6,7 +6,7 @@ from contact_book.core.mixins import FormControlMixin
 
 class ContactBaseForm(FormControlMixin, forms.ModelForm):
     ADDRESS_FIELD_ROWS = 10
-    ADDRESS_FIELD_COLUMNS = 28
+    ADDRESS_FIELD_COLUMNS = 25
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -36,4 +36,17 @@ class ContactEditForm(ContactBaseForm):
                 'cols': ContactBaseForm.ADDRESS_FIELD_COLUMNS
             }),
             'category': forms.Select(attrs={'class': 'form-select border border-dark border-2'})
+        }
+
+
+class ContactEmailAndAddressForm(ContactBaseForm):
+    class Meta(ContactBaseForm.Meta):
+        fields = ['email', 'address']
+
+        widgets = {
+            'email': forms.EmailInput(attrs={'autofocus': True}),
+            'address': forms.Textarea(attrs={
+                'rows': ContactBaseForm.ADDRESS_FIELD_ROWS,
+                'cols': ContactBaseForm.ADDRESS_FIELD_COLUMNS,
+            })
         }
