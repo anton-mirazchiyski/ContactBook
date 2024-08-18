@@ -22,6 +22,8 @@ class ContactCreateForm(ContactBaseForm):
     class Meta(ContactBaseForm.Meta):
         fields = ['name', 'phone_number', 'email', 'category']
 
+        labels = {'email': 'Email (optional)'}
+
         widgets = {
             'name': forms.TextInput(attrs={'autofocus': True}),
             'category': forms.Select(attrs={'class': 'form-select border border-dark border-2'})
