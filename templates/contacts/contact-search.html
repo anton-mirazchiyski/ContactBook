@@ -4,6 +4,9 @@
 
 {% block page_content %}
     <div class="form-container d-flex flex-column justify-content-center align-items-center">
+        <h1 class="h3 mb-5 pb-3 text-center">
+            Find any of your contacts by typing contact's name or email address
+        </h1>
         <form action="{% url 'contact_search' %}" method="post" class="d-flex">
             {% csrf_token %}
             <div>
@@ -13,8 +16,13 @@
                 <button type="submit" class="btn btn-dark"><i class="bi bi-search"></i></button>
             </div>
         </form>
+        <div class="mt-5 d-flex">
+            {% for contact in searched_contacts %}
+                <div class="me-5">{% include 'partials/contact-info.html' %}</div>
+            {% endfor %}
+        </div>
     </div>
-    {% if contact %}
+    {% if searched_contact %}
         <div class="">
             {% include 'partials/contact-info.html' %}
         </div>

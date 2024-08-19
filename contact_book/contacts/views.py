@@ -93,28 +93,28 @@ def determine_contact_info(contact_info):
 
 def search_contact(request):
     current_account = get_current_account(request)
-    searched_contact = None
+    searched_contacts = []
 
     if request.method == 'POST':
         search_form = ContactSearchForm(request.POST)
         if search_form.is_valid():
             contact_info = request.POST['search']
             is_name = determine_contact_info(contact_info)
+            if is_name:
+                searched_contacts = current_account.contact_set.filter(name__icontains=contact_info)
             try:
-                if is_name:
+                if not is_name:
                     searched_contact = (current_account.contact_set.
-                                        filter(name__icontains=contact_info).get())
-                else:
-                    searched_contact = (current_account.contact_set.
-                                        filter(email__contains=contact_info).get())
+                                        filter(email=contact_info).get())
+                    searched_contacts.append(searched_contact)
             except ObjectDoesNotExist:
-                searched_contact = None
+                searched_contacts = None
             redirect('contact_search')
 
     search_form = ContactSearchForm()
     context = {
         'form': search_form,
-        'contact': searched_contact
+        'searched_contacts': searched_contacts
     }
 
     return render(request, 'contacts/contact-search.html', context)
