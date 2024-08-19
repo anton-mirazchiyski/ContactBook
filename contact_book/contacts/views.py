@@ -1,8 +1,10 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-from contact_book.contacts.forms import ContactCreateForm, ContactEditForm, ContactEmailAndAddressForm
+from contact_book.contacts.forms import ContactCreateForm, ContactEditForm, ContactEmailAndAddressForm, \
+    ContactSearchForm
 from contact_book.contacts.models import Category, Contact
 from contact_book.core.accounts_utils import get_current_account
 from contact_book.core.mixins import CategoriesCreationMixin
@@ -80,3 +82,39 @@ def add_contact_email_or_address(request, pk):
     }
 
     return render(request, 'contacts/contact-email-and-address.html', context)
+
+
+def determine_contact_info(contact_info):
+    is_name = True
+    if '@' in contact_info:
+        is_name = False
+    return is_name
+
+
+def search_contact(request):
+    current_account = get_current_account(request)
+    searched_contact = None
+
+    if request.method == 'POST':
+        search_form = ContactSearchForm(request.POST)
+        if search_form.is_valid():
+            contact_info = request.POST['search']
+            is_name = determine_contact_info(contact_info)
+            try:
+                if is_name:
+                    searched_contact = (current_account.contact_set.
+                                        filter(name__icontains=contact_info).get())
+                else:
+                    searched_contact = (current_account.contact_set.
+                                        filter(email__contains=contact_info).get())
+            except ObjectDoesNotExist:
+                searched_contact = None
+            redirect('contact_search')
+
+    search_form = ContactSearchForm()
+    context = {
+        'form': search_form,
+        'contact': searched_contact
+    }
+
+    return render(request, 'contacts/contact-search.html', context)

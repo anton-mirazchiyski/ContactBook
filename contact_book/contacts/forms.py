@@ -52,3 +52,11 @@ class ContactEmailAndAddressForm(ContactBaseForm):
                 'cols': ContactBaseForm.ADDRESS_FIELD_COLUMNS,
             })
         }
+
+
+class ContactSearchForm(FormControlMixin, forms.Form):
+    search = forms.CharField(widget=forms.TextInput(attrs={
+        'placeholder': 'Search by name or email..',
+        'autofocus': True,
+        'class': FormControlMixin.STYLE
+    }))

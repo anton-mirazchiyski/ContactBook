@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Search contact {% endblock %}]
+
+{% block page_content %}
+    <div class="form-container d-flex flex-column justify-content-center align-items-center">
+        <form action="{% url 'contact_search' %}" method="post" class="d-flex">
+            {% csrf_token %}
+            <div>
+                {{ form.search }}
+            </div>
+            <div class="ms-3">
+                <button type="submit" class="btn btn-dark"><i class="bi bi-search"></i></button>
+            </div>
+        </form>
+    </div>
+    {% if contact %}
+        <div class="">
+            {% include 'partials/contact-info.html' %}
+        </div>
+    {% endif %}
+{% endblock %}
