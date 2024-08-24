@@ -21,10 +21,12 @@
                 <div class="me-5">{% include 'partials/contact-info.html' %}</div>
             {% endfor %}
         </div>
+        {% if messages %}
+            <div class="alert alert-danger">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
-    {% if searched_contact %}
-        <div class="">
-            {% include 'partials/contact-info.html' %}
-        </div>
-    {% endif %}
 {% endblock %}
