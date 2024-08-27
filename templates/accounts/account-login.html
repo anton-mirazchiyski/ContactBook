@@ -7,7 +7,7 @@
         <form action="{% url 'login' %}" method="post">
             {% csrf_token %}
             {% for field in form %}
-                <div class="pb-4">
+                <div class="pb-3">
                     <div class="pb-2 fs-6">
                         {{ field.label_tag }}
                     </div>

@@ -7,7 +7,7 @@
         <form action="{% url 'account_create' %}" method="post">
             {% csrf_token %}
             {% for field in form %}
-                <div class="pb-4">
+                <div class="pb-3">
                     <div class="pb-2 fs-6">
                         {{ field.label_tag }}
                     </div>
@@ -17,7 +17,7 @@
                 </div>
             {% endfor %}
             <button type="submit" 
-                    class="mt-2 btn btn-dark border border-dark">
+                    class="mt-3 btn btn-dark border border-dark">
                 Create Account
             </button>
             {% if form.errors %}
