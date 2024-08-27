@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, resolve_url
 
 from contact_book import settings
 from contact_book.accounts.forms import AccountCreationForm, AccountLoginForm, AccountNamesSetupForm
+from contact_book.core.accounts_utils import get_current_account
 
 UserModel = get_user_model()
 
@@ -52,3 +53,10 @@ def set_up_names(request):
 
     form = AccountNamesSetupForm()
     return render(request, 'accounts/account-names-setup.html', {'form': form})
+
+
+@login_required
+def show_account_details(request, pk):
+    current_account = get_current_account(request)
+    context = {'account': current_account}
+    return render(request, 'accounts/account-details.html', context)
