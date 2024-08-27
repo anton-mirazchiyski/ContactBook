@@ -45,7 +45,7 @@
         </div>
         <div class="contact-buttons d-flex justify-content-between mt-5 fs-5">
             <a class="me-5 btn btn-dark px-4" href="{% url 'contact_edit' object.pk %}">Edit</a>
-            <a class="ms-5 btn btn-dark py-1 px-3" href="#">Delete</a>
+            <a class="ms-5 btn btn-dark py-1 px-3" href="{% url 'contact_delete' object.pk %}">Delete</a>
         </div>
     </div>
 {% endblock %}

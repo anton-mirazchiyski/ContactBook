@@ -60,3 +60,7 @@ class ContactSearchForm(FormControlMixin, forms.Form):
         'autofocus': True,
         'class': FormControlMixin.STYLE
     }))
+
+
+class ContactDeleteForm(ContactEditForm):
+    pass

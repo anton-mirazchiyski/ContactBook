@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Delete contact {% endblock %}
+
+{% block page_content %}
+    <div class="form-container d-flex justify-content-center align-items-center">
+        <form action="{% url 'contact_delete' object.pk %}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="my-4">
+                <div class="pb-2 fs-5">
+                    {{ field.label_tag }}
+                </div>
+                <div>
+                    {{ field }}
+                </div>
+            </div>
+            {% endfor %}
+        </form>
+    </div>
+{% endblock %}

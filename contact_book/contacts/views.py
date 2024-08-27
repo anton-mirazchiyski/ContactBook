@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 
 from contact_book.contacts.forms import ContactCreateForm, ContactEditForm, ContactEmailAndAddressForm, \
-    ContactSearchForm
+    ContactSearchForm, ContactDeleteForm
 from contact_book.contacts.models import Category, Contact
 from contact_book.core.accounts_utils import get_current_account
 from contact_book.core.contacts_utils import find_searched_contacts
@@ -104,3 +104,10 @@ def search_contact(request):
     }
 
     return render(request, 'contacts/contact-search.html', context)
+
+
+class ContactDeleteView(views.DeleteView):
+    model = Contact
+    template_name = 'contacts/contact-delete.html'
+    form_class = ContactDeleteForm
+    
