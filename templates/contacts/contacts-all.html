@@ -3,24 +3,33 @@
 {% block title %} Your contacts {% endblock %}
 
 {% block page_content %}
+    {% if not contacts %}
+        <div class="form-container d-flex flex-column justify-content-center align-items-center">
+            <h1 class="h2 text-center">You have no contacts at the moment</h1>
+            <h2 class="h3 text-center mt-1">
+                <a class="text-decoration-none" href="{% url 'contact_create' %}">Add some</a>
+            </h2>
+        </div>
 
-    <div class="d-flex flex-wrap px-5 pt-4">
-        <p class="me-4">Show only:</p>
-        <ul class="list-unstyled d-flex flex-row">
-            <li class="me-5">
-                <a class="text-decoration-none" href="{% url 'family_contacts' 'family' %}">Family</a>
-            </li>
-            <li class="me-5">
-                <a class="text-decoration-none" href="{% url 'friends_contacts' 'friends' %}">Friends</a>
-            </li>
-            <li class="me-5">
-                <a class="text-decoration-none" href="{% url 'work_contacts' 'work' %}">Work</a>
-            </li>
-            <li class="me-5">
-                <a class="text-decoration-none" href="{% url 'other_contacts' 'other' %}">Other</a>
-            </li>
-        </ul>
-    </div>
+    {% else %}
+        <div class="d-flex flex-wrap px-5 pt-4">
+            <p class="me-4">Show only:</p>
+            <ul class="list-unstyled d-flex flex-row">
+                <li class="me-5">
+                    <a class="text-decoration-none" href="{% url 'family_contacts' 'family' %}">Family</a>
+                </li>
+                <li class="me-5">
+                    <a class="text-decoration-none" href="{% url 'friends_contacts' 'friends' %}">Friends</a>
+                </li>
+                <li class="me-5">
+                    <a class="text-decoration-none" href="{% url 'work_contacts' 'work' %}">Work</a>
+                </li>
+                <li class="me-5">
+                    <a class="text-decoration-none" href="{% url 'other_contacts' 'other' %}">Other</a>
+                </li>
+            </ul>
+        </div>
+    {% endif %}
 
     <div class="p-5">
         {% if family_contacts %}

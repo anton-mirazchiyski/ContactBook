@@ -15,7 +15,7 @@ def show_all_contacts(request):
     current_account = get_current_account(request)
     categories = Category.objects.all()
 
-    context = {}
+    context = {'contacts': current_account.contact_set.all()}
     for category in categories:
         name = str(category).lower() + '_contacts'
         contacts = current_account.contact_set.filter(category=category)
