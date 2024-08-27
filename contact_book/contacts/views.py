@@ -109,5 +109,9 @@ def search_contact(request):
 class ContactDeleteView(views.DeleteView):
     model = Contact
     template_name = 'contacts/contact-delete.html'
-    form_class = ContactDeleteForm
+    success_url = reverse_lazy('all_contacts')
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = ContactDeleteForm(instance=self.object)
+        return context
