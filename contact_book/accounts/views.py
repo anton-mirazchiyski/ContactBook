@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, resolve_url
+from django.urls import reverse_lazy
+from django.views import generic as views
 
 from contact_book import settings
 from contact_book.accounts.forms import AccountCreationForm, AccountLoginForm, AccountNamesSetupForm
@@ -60,3 +62,9 @@ def show_account_details(request, pk):
     current_account = get_current_account(request)
     context = {'account': current_account}
     return render(request, 'accounts/account-details.html', context)
+
+
+class AccountDeleteView(views.DeleteView):
+    model = UserModel
+    template_name = 'accounts/account-delete.html'
+    success_url = reverse_lazy('index')

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Account delete confirmation {% endblock %}
+
+{% block page_content %}
+    <h1 class="h2 text-center mt-5 mb-4">Are you sure you want to delete your account?</h1>
+    <p class="fs-4 text-center text-danger mb-5">All contacts will be lost too</p>
+    <div class="d-flex justify-content-center align-items-center">
+        <form action="{% url 'account_delete' object.pk %}" method="post">
+            {% csrf_token %}
+            <div class="vw-100 d-flex justify-content-evenly mt-5">
+                <button class="btn btn-danger px-4" type="submit">Delete</button>
+                <a class="btn btn-primary px-4" href="{% url 'all_contacts' %}"> Go back</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
