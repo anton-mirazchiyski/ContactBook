@@ -9,13 +9,15 @@
             <p class="fs-3">{{ account.first_name }} {{ account.last_name }}</p>
         {% else %}
             <p class="fs-3">
-                <a class="text-decoration-none" href="{% url 'names_setup' %}">Add your names</a>
+                <a class="text-dark" href="{% url 'names_setup' %}">Add your names</a>
             </p>
         {% endif %}
         <div class="d-flex flex-column mt-4">
-            <a class="my-3 mb-4 fs-5" href="#">Change username</a>
-            <a class="fs-5 mb-5" href="#">Change password</a>
-            <a class="text-decoration-none text-danger fs-5" href="#">Delete account</a>
+            <a class=" text-dark my-3 mb-4 fs-5" href="#">Change username</a>
+            <a class="text-dark fs-5 mb-5" href="#">Change password</a>
         </div>
+    </div>
+    <div class="text-center mt-5">
+        <a class="btn btn-danger" href="#">Delete account</a>
     </div>
 {% endblock %}
